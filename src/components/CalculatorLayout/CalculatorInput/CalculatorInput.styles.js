@@ -8,10 +8,9 @@ export const CalculatorInputStyle = styled.div`
   text-align: right;
   border-radius: 25px;
 
-  input {
+  span {
     background-color: #bbe1fa;
     padding: 5px 5px 0px 0px;
-    direction: rtl;
     height: 50px;
     border-radius: 25px;
     max-width: 100%;
@@ -19,7 +18,7 @@ export const CalculatorInputStyle = styled.div`
     border: none;
   }
 
-  input,
+  span,
   p {
     color: #2c003e;
     font-size: 30px;

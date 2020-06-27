@@ -5,7 +5,9 @@ const CalculatorInput = (props) => {
   return (
     <CalculatorInputStyle>
       <p>{props.prevValue}</p>
-      <input type="text" value={props.currValue} disabled/>
+      <div>
+        <span>{props.currValue}</span>
+      </div>
     </CalculatorInputStyle>
   );
 };
