@@ -3,13 +3,14 @@ import styled from "styled-components";
 export const CalculatorControlDiv = styled.div`
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: ${(props) =>
+    props.isScientific ? "repeat(5, 1fr)" : "repeat(4, 1fr)"};
   grid-gap: 10px;
   align-items: center;
 
   div {
     height: 60px;
-    font-size: 30px;
+    font-size: ${props => props.isScientific ? "22px" : "30px" };
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -33,4 +34,8 @@ export const SpecialBtn = styled.div`
   color: #0f4c75;
   border-radius: 10px;
   height: 50px !important;
+`;
+
+export const ScientificOperation = styled(Operation)`
+  display: ${(props) => (props.isScientific ? "flex !important" : "none !important")};
 `;

@@ -18,6 +18,10 @@ export const CalculatorInputStyle = styled.div`
     border: none;
   }
 
+  p {
+    opacity: 0.3;
+  }
+
   span,
   p {
     color: #2c003e;
@@ -25,9 +29,6 @@ export const CalculatorInputStyle = styled.div`
     font-weight: bold;
     padding-right: 20px;
     box-sizing: border-box;
-  }
-
-  p {
-    opacity: 0.3;
+    overflow-x: scroll;
   }
 `;

@@ -5,20 +5,23 @@ const Calculator = (props) => {
   const [currValue, setCurrValue] = useState(0);
   const [prevValue, setPrevValue] = useState(0);
   const [operation, setOperation] = useState("");
+  const [scientificMode, setScientificMode] = useState(false);
 
   // Layout Organization
   const printValue = (value) => {
-    let newValue = currValue;
-    newValue = newValue + value;
+    let newValue = parseFloat(currValue);
+    newValue = newValue + parseFloat(value);
     setCurrValue(newValue.toString());
   };
 
   const deleteLastValue = () => {
-    const actualValue = currValue;
-    if (actualValue === 0 || actualValue.length === 1) {
+    const currentValue = currValue;
+    console.log(currentValue);
+
+    if (currentValue === 0 || currentValue.length === 1) {
       setCurrValue(0);
     } else {
-      const newValue = actualValue.slice(0, -1);
+      const newValue = currentValue.slice(0, -1);
       setCurrValue(newValue);
     }
   };
@@ -57,6 +60,25 @@ const Calculator = (props) => {
 
   const percentage = () => {
     const newValue = parseFloat(currValue) / 100;
+    setPrevValue(0);
+    setCurrValue(newValue);
+  };
+
+  const setScientific = () => {
+    setScientificMode(!scientificMode);
+  };
+
+  const expMinusOne = () => {
+    const newValue = 1 / parseFloat(currValue);
+    setPrevValue(0);
+    setCurrValue(newValue);
+  };
+
+  const squareRoot = () => {
+    let newValue = Math.sqrt(parseFloat(currValue));
+    if (!Number.isInteger(newValue)) {
+      newValue = newValue.toFixed(9);
+    }
     setPrevValue(0);
     setCurrValue(newValue);
   };
@@ -114,9 +136,7 @@ const Calculator = (props) => {
         break;
     }
     setPrevValue(0);
-    console.log(newValue.toString());
-
-    setCurrValue(newValue);
+    setCurrValue(newValue.toString());
   };
 
   return (
@@ -134,6 +154,10 @@ const Calculator = (props) => {
       addDecimal={addDecimal}
       equal={equal}
       operation={operation}
+      setScientific={setScientific}
+      isScientific={scientificMode}
+      expMinusOne={expMinusOne}
+      squareRoot={squareRoot}
     />
   );
 };

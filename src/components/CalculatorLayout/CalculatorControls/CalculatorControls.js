@@ -3,6 +3,7 @@ import {
   CalculatorControlDiv,
   Number,
   Operation,
+  ScientificOperation,
   SpecialBtn,
 } from "./CalculatorControls.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,11 +16,52 @@ import {
   faPercent,
   faArrowAltCircleLeft,
   faFlask,
+  faSquareRootAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 const CalculatorControls = (props) => {
+  console.log(props.isScientific);
+
   return (
-    <CalculatorControlDiv>
+    <CalculatorControlDiv isScientific={props.isScientific}>
+      <ScientificOperation isScientific={props.isScientific}>
+        2nd
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        deg
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        sin
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        cos
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        tan
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        <span>
+          X<sup>Y</sup>
+        </span>
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        lg
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        ln
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        (
+      </ScientificOperation>
+      <ScientificOperation isScientific={props.isScientific}>
+        )
+      </ScientificOperation>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.squareRoot()}
+      >
+        <FontAwesomeIcon icon={faSquareRootAlt} />
+      </ScientificOperation>
       <Operation onClick={() => props.clearAll()}>CA</Operation>
       <Operation onClick={() => props.deleteLastValue()}>
         <FontAwesomeIcon icon={faArrowAltCircleLeft} />
@@ -30,25 +72,47 @@ const CalculatorControls = (props) => {
       <Operation onClick={() => props.divide()}>
         <FontAwesomeIcon icon={faDivide} />
       </Operation>
+      <ScientificOperation isScientific={props.isScientific}>
+        X!
+      </ScientificOperation>
       <Number onClick={() => props.addToInput(7)}>7</Number>
       <Number onClick={() => props.addToInput(8)}>8</Number>
       <Number onClick={() => props.addToInput(9)}>9</Number>
       <Operation onClick={() => props.multiply()}>
         <FontAwesomeIcon icon={faTimes} />
       </Operation>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.expMinusOne()}
+      >
+        <span>
+          1/<sub>X</sub>
+        </span>
+      </ScientificOperation>
       <Number onClick={() => props.addToInput(4)}>4</Number>
       <Number onClick={() => props.addToInput(5)}>5</Number>
       <Number onClick={() => props.addToInput(6)}>6</Number>
       <Operation onClick={() => props.substract()}>
         <FontAwesomeIcon icon={faMinus} />
       </Operation>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.addToInput(Math.PI.toFixed(9))}
+      >
+        π
+      </ScientificOperation>
       <Number onClick={() => props.addToInput(1)}>1</Number>
       <Number onClick={() => props.addToInput(2)}>2</Number>
       <Number onClick={() => props.addToInput(3)}>3</Number>
       <Operation onClick={() => props.add()}>
         <FontAwesomeIcon icon={faPlus} />
       </Operation>
-      <Operation>
+      <ScientificOperation isScientific={props.isScientific}>
+        <span>
+          e<sup>x</sup>
+        </span>
+      </ScientificOperation>
+      <Operation onClick={() => props.setScientific()}>
         <FontAwesomeIcon icon={faFlask} />
       </Operation>
       <Number onClick={() => props.addToInput(0)}>0</Number>

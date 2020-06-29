@@ -5,7 +5,7 @@ import CalculatorControls from "./CalculatorControls/CalculatorControls";
 
 const CalculatorLayout = (props) => {
   return (
-    <CalculatorLayoutStyle>
+    <CalculatorLayoutStyle isScientific={props.isScientific}>
       <CalculatorInput
         currValue={props.currValue}
         prevValue={props.prevValue}
@@ -22,6 +22,10 @@ const CalculatorLayout = (props) => {
         addDecimal={props.addDecimal}
         equal={props.equal}
         operation={props.operation}
+        setScientific={props.setScientific}
+        isScientific={props.isScientific}
+        expMinusOne={props.expMinusOne}
+        squareRoot={props.squareRoot}
       />
     </CalculatorLayoutStyle>
   );
