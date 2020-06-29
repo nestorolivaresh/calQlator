@@ -6,11 +6,17 @@ const Calculator = (props) => {
   const [prevValue, setPrevValue] = useState(0);
   const [operation, setOperation] = useState("");
   const [scientificMode, setScientificMode] = useState(false);
+  const [radiansMode, setRadiansMode] = useState(false);
 
   // Layout Organization
   const printValue = (value) => {
-    let newValue = parseFloat(currValue);
-    newValue = newValue + parseFloat(value);
+    const enteredValue = parseFloat(value);
+    let newValue = currValue;
+    if (currValue === Math.PI.toFixed(9)) {
+      newValue = parseFloat(currValue) * enteredValue;
+    } else {
+      newValue = newValue + enteredValue;
+    }
     setCurrValue(newValue.toString());
   };
 
@@ -35,6 +41,15 @@ const Calculator = (props) => {
     const previousValue = parseFloat(currValue);
     setCurrValue(0);
     setPrevValue(previousValue);
+  };
+
+  const setScientific = () => {
+    setScientificMode(!scientificMode);
+  };
+
+  const setRadians = () => {
+    setRadiansMode(!radiansMode);
+    console.log(radiansMode);
   };
 
   // Operations
@@ -64,10 +79,6 @@ const Calculator = (props) => {
     setCurrValue(newValue);
   };
 
-  const setScientific = () => {
-    setScientificMode(!scientificMode);
-  };
-
   const expMinusOne = () => {
     const newValue = 1 / parseFloat(currValue);
     setPrevValue(0);
@@ -83,9 +94,46 @@ const Calculator = (props) => {
     setCurrValue(newValue);
   };
 
+  const expEuler = () => {
+    let newValue = Math.exp(parseFloat(currValue));
+    if (!Number.isInteger(newValue)) {
+      newValue = newValue.toFixed(9);
+    }
+    setPrevValue(0);
+    setCurrValue(newValue);
+  };
+
+  const logBaseTen = () => {
+    let newValue = Math.log10(parseFloat(currValue));
+    if (currValue === 0) {
+      newValue = "You broke Math";
+    } else if (!Number.isInteger(newValue)) {
+      newValue = newValue.toFixed(9);
+    }
+    setPrevValue(0);
+    setCurrValue(newValue);
+  };
+
+  const logBaseE = () => {
+    let newValue = Math.log(parseFloat(currValue));
+    const currentValue = parseFloat(currValue);
+    if (currentValue < 0) {
+      newValue = "You broke Math";
+    } else if (!Number.isInteger(newValue)) {
+      newValue = newValue.toFixed(9);
+    }
+    setPrevValue(0);
+    setCurrValue(newValue);
+  };
+
+  const poweredBy = () => {
+    organizeInput();
+    setOperation("pow");
+  };
+
   const addDecimal = () => {
     let newValue = "";
-    const inputArray = currValue.split("");
+    const inputArray = currValue.toString().split("");
     const hasPoint = inputArray.some((letter) => letter === ".");
     if (hasPoint) {
       console.log("Cannot add another point");
@@ -93,6 +141,17 @@ const Calculator = (props) => {
       newValue = currValue + ".";
       setCurrValue(newValue);
     }
+  };
+
+  const pi = () => {
+    let newValue = "";
+    const currentValue = parseFloat(currValue);
+    if (currentValue === 0) {
+      newValue = Math.PI.toFixed(9);
+    } else {
+      newValue = (parseFloat(Math.PI.toFixed(9)) * currentValue).toString();
+    }
+    setCurrValue(newValue);
   };
 
   const equal = (operation) => {
@@ -117,19 +176,19 @@ const Calculator = (props) => {
         break;
 
       case "multiply":
-        if (currentValue === 0) {
-          newValue = previousValue;
-        } else {
-          newValue = previousValue * currentValue;
-        }
+        newValue = previousValue * currentValue;
         break;
 
       case "divide":
         if (currentValue === 0) {
-          newValue = "You just broke Math";
+          newValue = "You broke Math";
         } else {
           newValue = previousValue / currentValue;
         }
+        break;
+
+      case "pow":
+        newValue = Math.pow(previousValue, currentValue);
         break;
 
       default:
@@ -150,6 +209,7 @@ const Calculator = (props) => {
       substract={substract}
       multiply={multiply}
       divide={divide}
+      pow={poweredBy}
       percentage={percentage}
       addDecimal={addDecimal}
       equal={equal}
@@ -158,6 +218,12 @@ const Calculator = (props) => {
       isScientific={scientificMode}
       expMinusOne={expMinusOne}
       squareRoot={squareRoot}
+      expEuler={expEuler}
+      logBaseTen={logBaseTen}
+      logBaseE={logBaseE}
+      pi={pi}
+      setRadians={setRadians}
+      radians={radiansMode}
     />
   );
 };

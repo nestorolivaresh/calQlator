@@ -18,6 +18,7 @@ const CalculatorLayout = (props) => {
         substract={props.substract}
         multiply={props.multiply}
         divide={props.divide}
+        pow={props.pow}
         percentage={props.percentage}
         addDecimal={props.addDecimal}
         equal={props.equal}
@@ -26,6 +27,12 @@ const CalculatorLayout = (props) => {
         isScientific={props.isScientific}
         expMinusOne={props.expMinusOne}
         squareRoot={props.squareRoot}
+        expEuler={props.expEuler}
+        logBaseTen={props.logBaseTen}
+        logBaseE={props.logBaseE}
+        pi={props.pi}
+        setRadians={props.setRadians}
+        radians={props.radians}
       />
     </CalculatorLayoutStyle>
   );

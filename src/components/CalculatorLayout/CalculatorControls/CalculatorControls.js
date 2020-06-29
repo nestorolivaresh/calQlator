@@ -20,15 +20,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const CalculatorControls = (props) => {
-  console.log(props.isScientific);
-
   return (
     <CalculatorControlDiv isScientific={props.isScientific}>
       <ScientificOperation isScientific={props.isScientific}>
         2nd
       </ScientificOperation>
-      <ScientificOperation isScientific={props.isScientific}>
-        deg
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.setRadians()}
+      >
+        {props.radians ? "deg" : "rad"}
       </ScientificOperation>
       <ScientificOperation isScientific={props.isScientific}>
         sin
@@ -39,15 +40,24 @@ const CalculatorControls = (props) => {
       <ScientificOperation isScientific={props.isScientific}>
         tan
       </ScientificOperation>
-      <ScientificOperation isScientific={props.isScientific}>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.pow()}
+      >
         <span>
           X<sup>Y</sup>
         </span>
       </ScientificOperation>
-      <ScientificOperation isScientific={props.isScientific}>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.logBaseTen()}
+      >
         lg
       </ScientificOperation>
-      <ScientificOperation isScientific={props.isScientific}>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.logBaseE()}
+      >
         ln
       </ScientificOperation>
       <ScientificOperation isScientific={props.isScientific}>
@@ -97,7 +107,7 @@ const CalculatorControls = (props) => {
       </Operation>
       <ScientificOperation
         isScientific={props.isScientific}
-        onClick={() => props.addToInput(Math.PI.toFixed(9))}
+        onClick={() => props.pi()}
       >
         π
       </ScientificOperation>
@@ -107,7 +117,10 @@ const CalculatorControls = (props) => {
       <Operation onClick={() => props.add()}>
         <FontAwesomeIcon icon={faPlus} />
       </Operation>
-      <ScientificOperation isScientific={props.isScientific}>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.expEuler()}
+      >
         <span>
           e<sup>x</sup>
         </span>
