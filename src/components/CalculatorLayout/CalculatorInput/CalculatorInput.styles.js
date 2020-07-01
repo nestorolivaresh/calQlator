@@ -7,16 +7,7 @@ export const CalculatorInputStyle = styled.div`
   max-width: 100%;
   text-align: right;
   border-radius: 25px;
-
-  span {
-    background-color: #bbe1fa;
-    padding: 5px 5px 0px 0px;
-    height: 50px;
-    border-radius: 25px;
-    max-width: 100%;
-    outline: none;
-    border: none;
-  }
+  overflow-x: scroll;
 
   p {
     opacity: 0.3;
@@ -29,6 +20,6 @@ export const CalculatorInputStyle = styled.div`
     font-weight: bold;
     padding-right: 20px;
     box-sizing: border-box;
-    overflow-x: scroll;
+    border-radius: inherit;
   }
 `;

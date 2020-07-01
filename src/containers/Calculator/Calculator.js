@@ -22,8 +22,6 @@ const Calculator = (props) => {
 
   const deleteLastValue = () => {
     const currentValue = currValue;
-    console.log(currentValue);
-
     if (currentValue === 0 || currentValue.length === 1) {
       setCurrValue(0);
     } else {
@@ -49,7 +47,6 @@ const Calculator = (props) => {
 
   const setRadians = () => {
     setRadiansMode(!radiansMode);
-    console.log(radiansMode);
   };
 
   // Operations
@@ -94,6 +91,32 @@ const Calculator = (props) => {
     setCurrValue(newValue);
   };
 
+  const trigonometric = (trigCase) => {
+    const currentValue = parseFloat(currValue);
+    let newValue = 0;
+    switch (trigCase) {
+      case "sin":
+        newValue = radiansMode
+          ? Math.sin(currentValue)
+          : Math.sin((currentValue * Math.PI) / 180);
+        break;
+      case "cos":
+        newValue = radiansMode
+          ? Math.cos(currentValue)
+          : Math.cos((currentValue * Math.PI) / 180);
+        break;
+      case "tan":
+        newValue = radiansMode
+          ? Math.tan(currentValue)
+          : Math.tan((currentValue * Math.PI) / 180);
+        break;
+      default:
+        break;
+    }
+    setPrevValue(0);
+    setCurrValue(newValue);
+  };
+
   const expEuler = () => {
     let newValue = Math.exp(parseFloat(currValue));
     if (!Number.isInteger(newValue)) {
@@ -126,9 +149,16 @@ const Calculator = (props) => {
     setCurrValue(newValue);
   };
 
-  const poweredBy = () => {
-    organizeInput();
-    setOperation("pow");
+  const poweredBy = (num) => {
+    if (num) {
+      const currentValue = parseFloat(currValue);
+      const newValue = Math.pow(currentValue, num);
+      setPrevValue(0);
+      setCurrValue(newValue);
+    } else {
+      organizeInput();
+      setOperation("pow");
+    }
   };
 
   const addDecimal = () => {
@@ -221,6 +251,7 @@ const Calculator = (props) => {
       expEuler={expEuler}
       logBaseTen={logBaseTen}
       logBaseE={logBaseE}
+      trigonometric={trigonometric}
       pi={pi}
       setRadians={setRadians}
       radians={radiansMode}

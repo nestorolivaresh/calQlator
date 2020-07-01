@@ -31,6 +31,7 @@ const CalculatorLayout = (props) => {
         logBaseTen={props.logBaseTen}
         logBaseE={props.logBaseE}
         pi={props.pi}
+        trigonometric={props.trigonometric}
         setRadians={props.setRadians}
         radians={props.radians}
       />

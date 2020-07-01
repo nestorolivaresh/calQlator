@@ -31,22 +31,23 @@ const CalculatorControls = (props) => {
       >
         {props.radians ? "deg" : "rad"}
       </ScientificOperation>
-      <ScientificOperation isScientific={props.isScientific}>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.trigonometric("sin")}
+      >
         sin
-      </ScientificOperation>
-      <ScientificOperation isScientific={props.isScientific}>
-        cos
-      </ScientificOperation>
-      <ScientificOperation isScientific={props.isScientific}>
-        tan
       </ScientificOperation>
       <ScientificOperation
         isScientific={props.isScientific}
-        onClick={() => props.pow()}
+        onClick={() => props.trigonometric("cos")}
       >
-        <span>
-          X<sup>Y</sup>
-        </span>
+        cos
+      </ScientificOperation>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.trigonometric("tan")}
+      >
+        tan
       </ScientificOperation>
       <ScientificOperation
         isScientific={props.isScientific}
@@ -60,11 +61,24 @@ const CalculatorControls = (props) => {
       >
         ln
       </ScientificOperation>
-      <ScientificOperation isScientific={props.isScientific}>
-        (
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.pow()}
+      >
+        <span>
+          X<sup>Y</sup>
+        </span>
+      </ScientificOperation>
+      <ScientificOperation
+        isScientific={props.isScientific}
+        onClick={() => props.pow(2)}
+      >
+        <span>
+          X<sup>2</sup>
+        </span>
       </ScientificOperation>
       <ScientificOperation isScientific={props.isScientific}>
-        )
+        +/-
       </ScientificOperation>
       <ScientificOperation
         isScientific={props.isScientific}
